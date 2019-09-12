@@ -1,5 +1,5 @@
 {
-    "name": "kirschbaum-development/nova-inline-relationship",
+    "name": "dormadekhin/nova-inline-relationship",
     "description": "A Laravel Nova field for displaying relationship properties inline.",
     "keywords": [
         "laravel",
