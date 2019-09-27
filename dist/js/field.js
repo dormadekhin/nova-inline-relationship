@@ -14690,7 +14690,6 @@
                 function _arrayWithHoles(arr) {
                     if (is_array_default()(arr)) return arr;
                 }
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js
                 var get_iterator = __webpack_require__("5d73");
                 var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
@@ -14722,19 +14721,16 @@
                     
                     return _arr;
                 }
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js
                 function _nonIterableRest() {
                     throw new TypeError("Invalid attempt to destructure non-iterable instance");
                 }
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js
                 
                 
                 function _slicedToArray(arr, i) {
                     return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
                 }
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
                 var es7_array_includes = __webpack_require__("6762");
 
@@ -14752,7 +14748,6 @@
                         return arr2;
                     }
                 }
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/array/from.js
                 var from = __webpack_require__("774e");
                 var from_default = /*#__PURE__*/__webpack_require__.n(from);
@@ -14767,19 +14762,16 @@
                 function _iterableToArray(iter) {
                     if (is_iterable_default()(Object(iter)) || Object.prototype.toString.call(iter) === "[object Arguments]") return from_default()(iter);
                 }
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableSpread.js
                 function _nonIterableSpread() {
                     throw new TypeError("Invalid attempt to spread non-iterable instance");
                 }
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js
                 
                 
                 function _toConsumableArray(arr) {
                     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
                 }
-
 // EXTERNAL MODULE: external {"commonjs":"sortablejs","commonjs2":"sortablejs","amd":"sortablejs","root":"Sortable"}
                 var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_ = __webpack_require__("a352");
                 var external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_);
@@ -18138,10 +18130,10 @@
                 "default-field",
                 {
                     attrs: {
-                        field: _vm.field,
                         errors: _vm.errors,
-                        "show-errors": false,
-                        "full-width-content": true
+                        field: _vm.field,
+                        "full-width-content": true,
+                        "show-errors": false
                     }
                 },
                 [
@@ -18154,11 +18146,11 @@
                                 {
                                     attrs: {handle: ".relationship-item-handle"},
                                     on: {
-                                        start: function ($event) {
-                                            _vm.drag = true
-                                        },
                                         end: function ($event) {
                                             _vm.drag = false
+                                        },
+                                        start: function ($event) {
+                                            _vm.drag = true
                                         }
                                     },
                                     model: {
@@ -18175,12 +18167,12 @@
                                         ref: index,
                                         refInFor: true,
                                         attrs: {
+                                            errors: _vm.errorList,
+                                            field: _vm.field,
                                             id: index,
                                             "model-id": _vm.field.models[index] || 0,
                                             "model-key": _vm.field.modelKey,
-                                            value: items.fields,
-                                            errors: _vm.errorList,
-                                            field: _vm.field
+                                            value: items.fields
                                         },
                                         on: {
                                             deleted: function ($event) {
@@ -18215,7 +18207,7 @@
                                             {
                                                 staticClass:
                                                     "btn btn-default bg-transparent hover:bg-primary text-primary hover:text-white border border-primary hover:border-transparent inline-flex items-center relative mr-3",
-                                                attrs: {type: "button", disabled: _vm.disabledBtn},
+                                                attrs: {disabled: _vm.disabledBtn, type: "button"},
                                                 on: {
                                                     click: function ($event) {
                                                         return _vm.addItem()
@@ -18225,9 +18217,13 @@
                                             [
                                                 _vm._v(
                                                     "\n                    " +
-                                                    _vm._s(_vm.__("Add")) +
-                                                    " " +
-                                                    _vm._s(_vm.field.singularLabel.toLowerCase()) +
+                                                    _vm._s(
+                                                        this.field.addLabel
+                                                            ? this.field.addLabel
+                                                            : _vm.__("Add") +
+                                                            " " +
+                                                            _vm.field.singularLabel.toLowerCase()
+                                                    ) +
                                                     "\n                "
                                                 )
                                             ]

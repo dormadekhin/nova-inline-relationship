@@ -37,6 +37,7 @@ class NovaInlineRelationship extends Field
      */
     public $component = 'nova-inline-relationship';
     public $max;
+    public $addLabel = '';
     /**
      * Name of resource class to be used
      *
@@ -61,6 +62,12 @@ class NovaInlineRelationship extends Field
     public function setMax(int $count): self
     {
         $this->max = $count;
+        return $this;
+    }
+    
+    public function setAddLabel(string $addLabel): self
+    {
+        $this->addLabel = $addLabel;
         return $this;
     }
     
@@ -89,11 +96,12 @@ class NovaInlineRelationship extends Field
             'settings' => $properties->all(),
             'models' => $this->value ? $this->value->pluck('id')->all() : [],
             'modelKey' => Str::plural(Str::kebab(class_basename(optional($this->value)->first() ?? $resource->{$attribute}()->getRelated()->newInstance()))),
-            'singularLabel' => Str::title(Str::singular($this->name)),
-            'pluralLabel' => Str::title(Str::plural($this->name)),
+            'singularLabel' => $this->resourceClass::singularLabel(),
+            'pluralLabel' => $this->resourceClass::label(),
             'singular' => $this->isSingularRelationship($resource, $attribute),
             'deletable' => $this->isRelationshipDeletable($resource, $attribute),
             'max' => $this->max,
+            'addLabel' => $this->addLabel,
         ]);
     
         $this->updateFieldValue($resource, $attribute, $properties);
@@ -210,7 +218,7 @@ class NovaInlineRelationship extends Field
                 $name = sprintf('%s.*.%s', $attribute, $childAttribute);
                 $ruleArray[$name] = $child['rules'];
                 $attribArray[$name] = $child['label'] ?? $childAttribute;
-            
+    
                 if (!empty($child['messages']) && is_array($child['messages'])) {
                     foreach ($child['messages'] as $rule => $message) {
                         $messageArray[sprintf('%s.%s', $name, $rule)] = $message;
